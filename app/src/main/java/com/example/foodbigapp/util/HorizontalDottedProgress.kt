@@ -1,5 +1,6 @@
 package com.example.foodbigapp.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -25,18 +26,18 @@ class HorizontalDottedProgress : View {
     //specify how many dots you need in a progressbar
     private val mDotAmount = 10
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    ) {
-    }
+    )
 
     //Method to draw your customized dot on the canvas
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -78,13 +79,12 @@ class HorizontalDottedProgress : View {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val width: Int
-        val height: Int
+        val height: Int = mBounceDotRadius * 2
 
         //calculate the view width
         val calculatedWidth = 20 * 9
 
         width = calculatedWidth
-        height = mBounceDotRadius * 2
 
 
         //MUST CALL THIS

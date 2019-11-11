@@ -1,5 +1,6 @@
 package com.example.foodbigapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class RecipeActivity : BaseActivity() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun displayErrorScreen(errorMessage:String) {
         recipe_title.text = "Error retrieveing recipe..."
         recipe_social_score.text = ""

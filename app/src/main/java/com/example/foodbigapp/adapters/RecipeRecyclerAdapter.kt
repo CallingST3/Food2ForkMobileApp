@@ -7,11 +7,11 @@ import com.example.foodbigapp.R
 import com.example.foodbigapp.models.Recipe
 import com.example.foodbigapp.util.Constants
 
-class RecipeRecyclerAdapter(val listener: (Recipe) -> Unit) :
+class RecipeRecyclerAdapter(private val listener: (Recipe) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
-    var mRecipes: MutableList<Recipe> = mutableListOf()
+    private var mRecipes: MutableList<Recipe> = mutableListOf()
 
     fun setRecipes(recipes: MutableList<Recipe>) {
         mRecipes = recipes
@@ -20,7 +20,7 @@ class RecipeRecyclerAdapter(val listener: (Recipe) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val view = when (viewType) {
+        return when (viewType) {
             Constants.RECIPE_TYPE -> RecipeViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.layout_recipe_list_item,
@@ -50,7 +50,6 @@ class RecipeRecyclerAdapter(val listener: (Recipe) -> Unit) :
                 )
             )
         }
-        return view
     }
 
     override fun getItemCount(): Int {
@@ -68,15 +67,14 @@ class RecipeRecyclerAdapter(val listener: (Recipe) -> Unit) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (mRecipes[position].title == "LOADING...") {
-            return Constants.LOADING_TYPE
+        return if (mRecipes[position].title == "LOADING...") {
+            Constants.LOADING_TYPE
         } else if(mRecipes[position].socialRank == (-1).toDouble()) {
-            return Constants.CATEGORY_TYPE
+            Constants.CATEGORY_TYPE
         }else if(position == mRecipes.size - 1 && position != 0 && mRecipes[position].title != "EXHAUSTED...") {
-            return Constants.LOADING_TYPE
-        }
-        else {
-            return Constants.RECIPE_TYPE
+            Constants.LOADING_TYPE
+        } else {
+            Constants.RECIPE_TYPE
         }
     }
 
