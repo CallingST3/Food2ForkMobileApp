@@ -26,6 +26,7 @@ android {
 dependencies {
     def retrofitVersion = "2.5.0"
     def lifecycle_version = "2.0.0"
+    def supportLibraryVersion = "27.1.1"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -46,5 +47,11 @@ dependencies {
 
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    //annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+
+    // Design Support Library
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 }

@@ -34,11 +34,28 @@ data class Recipe(
     @Expose
     var title: String? = null
 ) : Parcelable {
-    constructor(parcel: Parcel) : this() {
-    }
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.createStringArrayList(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readDouble(),
+        parcel.readString(),
+        parcel.readString()
+    )
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(publisher)
+        parcel.writeString(f2fUrl)
+        parcel.writeStringList(ingredients)
+        parcel.writeString(sourceUrl)
+        parcel.writeString(recipeId)
+        parcel.writeString(imageUrl)
+        parcel.writeDouble(socialRank)
+        parcel.writeString(publisherUrl)
+        parcel.writeString(title)
     }
 
     override fun describeContents(): Int {
@@ -54,5 +71,4 @@ data class Recipe(
             return arrayOfNulls(size)
         }
     }
-
 }
